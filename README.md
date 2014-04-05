@@ -30,6 +30,11 @@ Available options:
 ```
 ## Example
 
+Given the following pic:
+
+![image](https://raw.githubusercontent.com/Zane-XY-W/4Pics1WordCheater/master/test/example.png)
+
+You can generate a list of possible words like:
 
 ```
 $ 4pics1word -n 5 -l eryptcqkmnzp
