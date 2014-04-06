@@ -1,11 +1,11 @@
 {-# LANGUAGE OverloadedStrings #-}
 module FourPicsOneWord where
 import           Control.Applicative
+import           Data.List
 import qualified Data.Text            as T
 import           Network.HTTP.Conduit (simpleHttp)
 import           Text.HTML.DOM        (parseLBS)
 import           Text.XML.Cursor
-import Data.List
 
 dictSource :: String -> String
 dictSource n
@@ -16,11 +16,10 @@ dictSource n
     ++ ".html"
 
 extractDict :: String -> IO [String]
-extractDict url
-  = do cont <- simpleHttp url
-       let (wordsCursor:_) = fromDocument (parseLBS cont) $// element "pre" >=> child
-           wordsText   = T.concat . content $ wordsCursor
-       return $ T.unpack <$> (T.lines >=> T.words) wordsText
+extractDict url = do cont <- simpleHttp url
+                     let (wordsCursor : _) = fromDocument (parseLBS cont) $// element "pre" >=> child
+                         wordsText = T.concat . content $ wordsCursor
+                     return $ T.unpack <$> (T.lines >=> T.words) wordsText
 
 filteredResults :: String -> String -> IO [String]
-filteredResults n l = filter (null . (\\ l))<$> extractDict (dictSource n)
+filteredResults n l = filter (null . (\\ l)) <$> extractDict (dictSource n)
