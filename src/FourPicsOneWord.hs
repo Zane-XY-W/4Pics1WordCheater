@@ -5,6 +5,7 @@ import qualified Data.Text            as T
 import           Network.HTTP.Conduit (simpleHttp)
 import           Text.HTML.DOM        (parseLBS)
 import           Text.XML.Cursor
+import Data.List
 
 dictSource :: String -> String
 dictSource n
@@ -14,12 +15,12 @@ dictSource n
            _ -> "234"
     ++ ".html"
 
-extractDict :: String -> IO [T.Text]
+extractDict :: String -> IO [String]
 extractDict url
   = do cont <- simpleHttp url
        let (wordsCursor:_) = fromDocument (parseLBS cont) $// element "pre" >=> child
            wordsText   = T.concat . content $ wordsCursor
-       return $ concat $ T.words <$> T.lines wordsText
+       return $ T.unpack <$> (T.lines >=> T.words) wordsText
 
-filteredResults :: String -> String -> IO [T.Text]
-filteredResults n l = filter (T.all (`elem` l)) <$> extractDict (dictSource n)
+filteredResults :: String -> String -> IO [String]
+filteredResults n l = filter (null . (\\ l))<$> extractDict (dictSource n)

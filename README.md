@@ -7,26 +7,22 @@ clone and run
 
 
 ```
-
-cabal-dev configure --enable-split-objs
-
-cabal-dev install 
+cabal install 
 ```
 
 ## Usage
 
 ```
-$ 4pics1word -h
-4pics1word cheater
+$ 4pics1word -?
+4pics1word Cheater v0.1, (C) Zane W
 
-Usage: 4pics1word (-n|--length ARG) (-l|--letters ARG)
-  Guess 4pics1word from dictionary
+args [OPTIONS]
 
-Available options:
-  -h,--help                Show this help text
-  -n,--length ARG          the length of the word
-  -l,--letters ARG         the letters used to guess
-
+Common flags:
+  -n --length=DIGIT      the length of the word (2-8)
+  -l --letters=ALPHABET  the letters used to guess (a-z) case-insensitive
+  -? --help              Display help message
+  -V --version           Print version information
 ```
 ## Example
 
@@ -38,9 +34,6 @@ You can generate a list of possible words like:
 
 ```
 $ 4pics1word -n 5 -l eryptcqkmnzp
-["creek","creep","creme","crepe","crept","crepy","crypt","emcee","emeer","emery","emmer","emmet","empty","enemy","enter","entry","enzym","erect","kempt","kente","kerne","kerry","kreep","mercy","merer","merry","meter","metre","nertz","netty","pecky","peery","pence","penne","penny","peppy","perky","perry","peter","petty","preen","pryer","recce","reeky","rekey","remet","rente","retem","retry","teeny","tempt","tenet","tenty","tepee","terce","terne","terry","treen","typey","yente"]
+["crept","crepy","crypt","empty","entry","enzym","kempt","mercy","nertz","pecky","perky"]
 ```
 
-## Contributing
-
-TODO: Write contribution instructions here
