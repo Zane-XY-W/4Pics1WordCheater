@@ -12,7 +12,7 @@ Build-Type:             Simple
 Executable 4pics1word
   Default-Language:     Haskell2010
   HS-Source-Dirs:       src
-  GHC-Options:          -Wall -O2
+  GHC-Options:          -Wall
   Exposed-Modules:      FourPicsOneWord
   Main-Is:              Main.hs
   Build-Depends:        base >= 4 && < 5,
@@ -21,7 +21,8 @@ Executable 4pics1word
                         http-conduit >= 2.0.0.8,
                         text >= 1.1.0.1,
                         bytestring >= 0.10.0.2,
-                        cmdargs >= 0.10.7
+                        cmdargs >= 0.10.7,
+                        network >= 2.4.2.2
 
 Test-Suite spec
   Type:                 exitcode-stdio-1.0
